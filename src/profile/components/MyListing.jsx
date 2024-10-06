@@ -39,7 +39,12 @@ function MyListing() {
     }
 
     const deleteListing = async(id) =>{
-      const result = await 
+      const result = await db.delete(CarListing)
+      .where(eq(CarListing.id, id)).returning({deletedId: CarListing.id})
+
+      const currentCarList = carList.filter(item => item.id != id);
+      setCarList(currentCarList);
+      console.log(result);
     }
   return (
     <div className='mt-6'>
@@ -60,7 +65,7 @@ function MyListing() {
                 </Link>
                 <AlertDialog>
                   <AlertDialogTrigger asChild>
-                    <Button variant="destructive" onClick={deleteListing(item?.id)}><FaTrashAlt/></Button>
+                    <Button variant="destructive"><FaTrashAlt/></Button>
                   </AlertDialogTrigger>
                   <AlertDialogContent>
                     <AlertDialogHeader>
@@ -71,7 +76,10 @@ function MyListing() {
                     </AlertDialogHeader>
                     <AlertDialogFooter>
                       <AlertDialogCancel>Cancel</AlertDialogCancel>
-                      <AlertDialogAction className="bg-destructive hover:bg-destructive/90">Delete</AlertDialogAction>
+                      <AlertDialogAction 
+                      className="bg-destructive hover:bg-destructive/90"
+                      onClick={deleteListing(item?.id)}
+                      >Delete</AlertDialogAction>
                     </AlertDialogFooter>
                   </AlertDialogContent>
                 </AlertDialog>

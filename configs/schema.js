@@ -33,5 +33,5 @@ export const CarListing = pgTable('carListing', {
 export const CarImages = pgTable('carImages', {
     id: serial('id').primaryKey(),
     imageUrl: varchar('imageUrl').notNull(),
-    carListingId: integer('carListingId').notNull().references(() => CarListing.id)
+    carListingId: integer('carListingId').notNull().references(() => CarListing.id, {onDelete: 'cascade'})
 })
