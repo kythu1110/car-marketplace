@@ -8,6 +8,17 @@ import { useUser } from '@clerk/clerk-react'
 import Service from '../../Shared/Service'
 import CarItem from '../../components/CarItem'
 import { FaTrashAlt } from "react-icons/fa";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "../../components/ui/alert-dialog"
 
 function MyListing() {
 
@@ -43,7 +54,23 @@ function MyListing() {
                 <Link to={'/add-listing?mode=edit&id=' + item?.id} className='w-full'>
                   <Button variant="outline" className="w-full">Edit</Button>
                 </Link>
-                <Button variant="destructive"><FaTrashAlt/></Button>
+                <AlertDialog>
+                  <AlertDialogTrigger asChild>
+                    <Button variant="destructive"><FaTrashAlt/></Button>
+                  </AlertDialogTrigger>
+                  <AlertDialogContent>
+                    <AlertDialogHeader>
+                      <AlertDialogTitle>Are you sure you want to delete this car?</AlertDialogTitle>
+                      <AlertDialogDescription>
+                      This action cannot be undone. This will permanently delete your car and remove its data from our servers.
+                      </AlertDialogDescription>
+                    </AlertDialogHeader>
+                    <AlertDialogFooter>
+                      <AlertDialogCancel>Cancel</AlertDialogCancel>
+                      <AlertDialogAction className="bg-destructive hover:bg-destructive/90">Delete</AlertDialogAction>
+                    </AlertDialogFooter>
+                  </AlertDialogContent>
+                </AlertDialog>
               </div>
             </div>
           ))}
