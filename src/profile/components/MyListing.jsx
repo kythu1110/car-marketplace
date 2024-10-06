@@ -37,6 +37,10 @@ function MyListing() {
       const resp = Service.FormatResult(result)
       setCarList(resp)
     }
+
+    const deleteListing = async(id) =>{
+      const result = await 
+    }
   return (
     <div className='mt-6'>
         <div className='flex justify-between items-center'>
@@ -56,7 +60,7 @@ function MyListing() {
                 </Link>
                 <AlertDialog>
                   <AlertDialogTrigger asChild>
-                    <Button variant="destructive"><FaTrashAlt/></Button>
+                    <Button variant="destructive" onClick={deleteListing(item?.id)}><FaTrashAlt/></Button>
                   </AlertDialogTrigger>
                   <AlertDialogContent>
                     <AlertDialogHeader>
