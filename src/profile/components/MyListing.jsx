@@ -78,7 +78,7 @@ function MyListing() {
                       <AlertDialogCancel>Cancel</AlertDialogCancel>
                       <AlertDialogAction 
                       className="bg-destructive hover:bg-destructive/90"
-                      onClick={deleteListing(item?.id)}
+                      onClick={() => deleteListing(item?.id)}
                       >Delete</AlertDialogAction>
                     </AlertDialogFooter>
                   </AlertDialogContent>
